@@ -3,10 +3,10 @@ const { append } = require('express/lib/response');
 const axios = require('axios');
 const app = express();
 
+require('dotenv').config()
 
 axios.defaults.baseURL = 'https://api.api-futebol.com.br/v1/';
-axios.defaults.headers.common['Authorization'] = 'Bearer test_18ed57ee6fcef0b4e72ab7b49aa4cd';
-
+axios.defaults.headers.common['Authorization'] ='Bearer live_c2f47e8ca20f61ffb44bf1461df186';
 
 async function getDados(rota){
     //const teste = 'campeonatos'
@@ -42,8 +42,6 @@ app.get('/campeonatos/(\\d+)$',async (req,res) => {
 app.get('/campeonatos/*/tabela$',async (req,res) => {
    
     var dados = await getDados(`campeonatos/${req.params[0]}/tabela`);
-
-    console.log(dados.data);
 
     res.json(dados.data)
 
